@@ -1,0 +1,43 @@
+<body>
+  <header>
+    <h1>Log In</h1>
+    <p>no account? <a routerLink="/registration">register here</a> </p>
+  </header>
+  <main>
+    <section class="account_type">
+      <button class="btn-left"   type="submit" (click)="setUserLogin()" [class.clicked] = "isUser"> User </button>
+      <button class="btn-right"  type="submit" (click)="setAdminLogin()" [class.clicked] = "!isUser"> Admin </button>
+    </section>
+    <section class="input">
+      <form ngNativeValidate (ngSubmit)="toggleLogin()">
+        <div class="inputfield">
+          <input type="text"  [(ngModel)]="email"
+                 id="email"
+                 name="email"
+                 placeholder="email"
+                 required>
+        </div>
+
+        <div class="inputfield">
+          <input type="password" [(ngModel)]="password"
+                 id="password"
+                 name="password"
+                 placeholder="password"
+                 required>
+        </div>
+        <button class="btn" type="submit">LOGIN</button>
+      </form>
+    </section>
+    <section class="two-factor" *ngIf="validateLogin">
+      <form ngNativeValidate (ngSubmit)="toggleTwoFactor()">
+        <input type="text" class="twoFactorInputChar"  id="twoFactor1" name="twoFactor" minlength="1" maxlength="1" [(ngModel)]="twoFactorCode[0]" required>
+        <input type="text" class="twoFactorInputChar"  id="twoFactor2" name="twoFactor" minlength="1" maxlength="1" [(ngModel)]="twoFactorCode[1]" required>
+        <input type="text" class="twoFactorInputChar"  id="twoFactor3" name="twoFactor" minlength="1" maxlength="1" [(ngModel)]="twoFactorCode[2]" required>
+        <input type="text" class="twoFactorInputChar"  id="twoFactor4" name="twoFactor" minlength="1" maxlength="1" [(ngModel)]="twoFactorCode[3]" required>
+        <input type="text" class="twoFactorInputChar"  id="twoFactor5" name="twoFactor" minlength="1" maxlength="1" [(ngModel)]="twoFactorCode[4]" required>
+        <input type="text" class="twoFactorInputChar"  id="twoFactor6" name="twoFactor" minlength="1" maxlength="1" [(ngModel)]="twoFactorCode[5]" required>
+        <button class="btn" type="submit">Verify</button>
+      </form>
+    </section>
+  </main>
+</body>

@@ -1,0 +1,82 @@
+<body>
+  <header>
+    <h1>Registration</h1>
+    <p>already have an account? <a routerLink="/login">login here</a> </p>
+  </header>
+  <main>
+    <section class="s">
+      <button class="btn-left" type="submit" (click)="setUserRegistration()" [class.clicked] = "isUser" > User </button>
+      <button class="btn-right" type="submit" (click)="setAdminRegistration()" [class.clicked] = "!isUser"> Admin </button>
+    </section>
+    <section class="input">
+      <form ngNativeValidate (ngSubmit)="toggleRegistration()">
+        <div class="inputfield">
+          <label class="input_label">Vorname:</label>
+          <input type="text" [(ngModel)]="firstName"
+                 id="vorname"
+                 name="vorname"
+                 placeholder="vorname"
+                 required>
+        </div>
+
+        <div class="inputfield" >
+          <label class="input_label">Nachname:</label>
+          <input type="text" [(ngModel)]="lastName"
+                 id="nachname"
+                 name="nachname"
+                 placeholder="nachname"
+                 required>
+        </div>
+
+        <div class="inputfield" *ngIf="isUser">
+          <label class="input_label">Geburtstag:</label>
+          <input type="text" [(ngModel)]="birthday"
+                 id="birthday"
+                 name="birthday"
+                 placeholder="geburtstag"
+                 required>
+        </div>
+
+        <div class="inputfield">
+          <label class="input_label">Email:</label>
+          <input type="text" [(ngModel)]="email"
+                 id="email"
+                 name="email"
+                 placeholder="email"
+                 required>
+        </div>
+
+        <div class="inputfield">
+          <label class="input_label">Passwort:</label>
+          <input type="text" [(ngModel)]="password"
+                 id="passsword"
+                 name="passsword"
+                 placeholder="passswort"
+                 required>
+        </div>
+
+        <div class="inputfield">
+          <label class="input_label">Passwort wiederholen:</label>
+          <input type="text" [(ngModel)]="password_repeated"
+                 id="passsword_repeated"
+                 name="passsword"
+                 placeholder="passswort wiederholen"
+                 required>
+        </div>
+
+        <div class="inputfield" *ngIf="isUser">
+          <label class="input_label">Profilbild:</label>
+          <input type="text" [(ngModel)]="profilePicture"
+                 id="profilpicture"
+                 name="profilpicture"
+                 placeholder="profilbild"
+                 required>
+        </div>
+
+        <button class="btn" type="submit">register</button>
+      </form>
+
+
+    </section>
+  </main>
+</body>
