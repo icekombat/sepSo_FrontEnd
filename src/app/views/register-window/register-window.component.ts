@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {RegistrationServiceService} from "../../services/registration-service.service"
 
@@ -12,18 +12,21 @@ import {last} from "rxjs";
 })
 export class RegisterWindowComponent {
   //Data coming in
-  firstName!:     string;
-  lastName!:      string;
+  vorname!:     string;
+  nachname!:      string;
   email!:         string;
-  password!:      string;
-  password_repeated!: string
-  birthday!:      string;
-  profilePicture!:string;
+  passwort!:      string;
+  passwort_wiederholt!: string
+  geburtstag!:      string;
+  profilbild!:string;
 
   user: User;
   admin: Admin;
 
   isUser: boolean = true;
+
+  registrationMSG:string = "";
+
   constructor( private registrationService: RegistrationServiceService) {
     this.user = new User();
     this.admin = new Admin();
@@ -43,7 +46,7 @@ export class RegisterWindowComponent {
       alert("email nicht Korrekt angegeben.");
       bool = false;
     }
-    if(this.password.toString() != this.password_repeated.toString()){
+    if(this.passwort.toString() != this.passwort_wiederholt.toString()){
       alert("passwörter stimmen nicht überein.");
       bool = false;
     }
@@ -54,28 +57,30 @@ export class RegisterWindowComponent {
 
   assignAttributesToAccountType(){
     if(this.isUser){
-      this.user.firstName = this.firstName;
-      this.user.lastName = this.lastName;
-      this.user.birthday = this.birthday;
+      this.user.firstName = this.vorname;
+      this.user.lastName = this.nachname;
+      this.user.birthday = this.geburtstag;
       this.user.email = this.email;
-      this.user.password = this.password;
-      this.user.profilePicture = this.profilePicture;
+      this.user.password = this.passwort;
+      this.user.profilePicture = this.profilbild;
     }
     else {
-      this.admin.firstName = this.firstName;
-      this.admin.lastName = this.lastName;
+      this.admin.vorname = this.vorname;
+      this.admin.nachname = this.nachname;
       this.admin.email = this.email;
-      this.admin.password = this.password;
+      this.admin.passwort = this.passwort;
     }
   }
-
   register(){ // Zugriff auf Backend durch RegistrationService
-    if(this.isUser){
+    if(this.isUser){ //User Registration
 
     }
-    else {
-
+    else { //Admin Registration
+      this.registrationService.registerAdmin(this.admin).subscribe(text => this.registrationMSG = text);
     }
+
+    //for testing
+    this.updateAdminList();
   }
 
   setAdminRegistration(){
@@ -86,4 +91,16 @@ export class RegisterWindowComponent {
   }
 
   protected readonly last = last;
+
+
+  //Admin List for Testing
+  adminList: Admin[] |any;
+
+  public updateAdminList(){
+    this.registrationService.getAdminList().subscribe(list => this.adminList = list);
+  }
+  ngOnInit():void{
+    this.updateAdminList();
+    }
+
 }

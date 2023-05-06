@@ -1,6 +1,6 @@
 export class Admin{
-  firstName!:string;
-  lastName!:string;
+  vorname!:string;
+  nachname!:string;
   email!:string;
-  password!:string;
+  passwort!:string;
 }

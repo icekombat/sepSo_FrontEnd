@@ -12,7 +12,7 @@
       <form ngNativeValidate (ngSubmit)="toggleRegistration()">
         <div class="inputfield">
           <label class="input_label">Vorname:</label>
-          <input type="text" [(ngModel)]="firstName"
+          <input type="text" [(ngModel)]="vorname"
                  id="vorname"
                  name="vorname"
                  placeholder="vorname"
@@ -21,7 +21,7 @@
 
         <div class="inputfield" >
           <label class="input_label">Nachname:</label>
-          <input type="text" [(ngModel)]="lastName"
+          <input type="text" [(ngModel)]="nachname"
                  id="nachname"
                  name="nachname"
                  placeholder="nachname"
@@ -30,7 +30,7 @@
 
         <div class="inputfield" *ngIf="isUser">
           <label class="input_label">Geburtstag:</label>
-          <input type="text" [(ngModel)]="birthday"
+          <input type="text" [(ngModel)]="geburtstag"
                  id="birthday"
                  name="birthday"
                  placeholder="geburtstag"
@@ -48,7 +48,7 @@
 
         <div class="inputfield">
           <label class="input_label">Passwort:</label>
-          <input type="text" [(ngModel)]="password"
+          <input type="text" [(ngModel)]="passwort"
                  id="passsword"
                  name="passsword"
                  placeholder="passswort"
@@ -57,7 +57,7 @@
 
         <div class="inputfield">
           <label class="input_label">Passwort wiederholen:</label>
-          <input type="text" [(ngModel)]="password_repeated"
+          <input type="text" [(ngModel)]="passwort_wiederholt"
                  id="passsword_repeated"
                  name="passsword"
                  placeholder="passswort wiederholen"
@@ -66,7 +66,7 @@
 
         <div class="inputfield" *ngIf="isUser">
           <label class="input_label">Profilbild:</label>
-          <input type="text" [(ngModel)]="profilePicture"
+          <input type="text" [(ngModel)]="profilbild"
                  id="profilpicture"
                  name="profilpicture"
                  placeholder="profilbild"
@@ -74,9 +74,33 @@
         </div>
 
         <button class="btn" type="submit">register</button>
+        <p>{{registrationMSG}}</p>
       </form>
-
-
     </section>
+
+    <section>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Vorname</th>
+            <th scope="col">Nachname</th>
+            <th scope="col">email</th>
+            <th scope="col">passwort</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let admin of adminList">
+          <td>{{ admin.id }}</td>
+          <td>{{ admin.vorname }}</td>
+          <td>{{ admin.nachname }}</td>
+          <td>{{ admin.email }}</td>
+          <td>{{ admin.passwort }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
   </main>
 </body>

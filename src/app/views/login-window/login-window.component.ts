@@ -14,7 +14,7 @@ export class LoginWindowComponent {
 
   isUser:boolean = true;
   validateLogin: boolean = false;
-  constructor(private loginService:LoginServiceService) {
+  constructor(private loginService:LoginServiceService ) {
     this.email = "";
     this.password = "";
     this.twoFactorCode = [];
@@ -55,5 +55,4 @@ export class LoginWindowComponent {
     this.isUser = true;
   }
 
-  
 }

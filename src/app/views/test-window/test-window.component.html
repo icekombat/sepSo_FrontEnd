@@ -1,0 +1,23 @@
+
+<body>
+  <section class="textFromBackend">
+    <p>{{backendText}}</p>
+    <button class="btn" type="submit" (click)="getBackendText()">getBackendText</button>
+  </section>
+  <section>
+    <form ngNativeValidate (ngSubmit)="createTestObject()">
+      <input type="text" [(ngModel)]="text"
+             name="text"
+             required>
+      <button class="btn" type="submit">submit</button>
+      <p style="color: red">{{backendMSG}}</p>
+    </form>
+  </section>
+  <section>
+    <button class="btn" style="background-color: blueviolet" (click)="updateTestObjectList()">update</button>
+    <tr *ngFor="let testObject of testObjectList">
+      <td>{{testObject.text}}</td>
+    </tr>
+  </section>
+
+</body>
